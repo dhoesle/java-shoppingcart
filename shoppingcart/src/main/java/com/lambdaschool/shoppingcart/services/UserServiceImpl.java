@@ -71,4 +71,15 @@ public class UserServiceImpl
         }
         return userrepos.save(newUser);
     }
+
+    @Override
+    public User findByName(String name)
+    {
+        User uu = userrepos.findByUsername(name.toLowerCase());
+        if (uu == null)
+        {
+            throw new ResourceNotFoundException("User name " + name + " not found!");
+        }
+        return uu;
+    }
 }
